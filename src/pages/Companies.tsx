@@ -29,7 +29,7 @@ const Companies = () => {
         } catch (error) {
             // Check if error is an AxiosError
             if (error instanceof AxiosError) {
-                console.error('Error fetching users', error);
+                console.error('Error fetching companies', error);
                 if (error.response?.status === 401) {
                     logout(); // Log out and clear the token
                     navigate('/login'); // Redirect to login page
