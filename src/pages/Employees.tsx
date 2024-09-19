@@ -76,7 +76,6 @@ const Employees = () => {
     // Handle Create and Update submissions
     const handleSubmitEmployee = async (companyData: { id?: number; name: string; email: string, phone: string, company_id?: number; }) => {
         if (selectedEmployee) {
-            console.log("companyData", companyData)
             // Update company
             await apiClient.put(`/employees/${selectedEmployee.ID}`, companyData, {
                 headers: { Authorization: `Bearer ${token}` },

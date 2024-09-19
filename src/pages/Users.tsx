@@ -7,6 +7,7 @@ import Sidebar from '../components/sideBar/Index';
 import { AxiosError } from 'axios';
 import UserModal from '../components/user/IndexModal';
 import { fetchUsers, createUser, deleteUser, updateUser } from '../api/user/apiService';
+import { fetchCompanies } from '../api/company/apiService';
 
 interface User {
     ID: number;
@@ -56,11 +57,9 @@ const Users = () => {
         }
     };
 
-    const fetchCompanies = async () => {
+    const getCompanies = async () => {
         try {
-            const response = await apiClient.get('/companies', {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            const response = await fetchCompanies(token ?? '');
             setCompanies(response.data.data);
         } catch (error) {
             // Check if error is an AxiosError
@@ -91,7 +90,7 @@ const Users = () => {
 
     useEffect(() => {
         getUsers();
-        fetchCompanies();
+        getCompanies();
         fetchRoles();
     }, [token, navigate, logout]);
 
@@ -101,9 +100,12 @@ const Users = () => {
                 headers: { Authorization: `Bearer ${token}` },
             });
         } else {
-            await apiClient.post('/users', userData, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            const response = await createUser(userData, token ?? '');
+            if (response.data && Array.isArray(response.data.data)) {
+                console.log('Success Create User', response.data);
+            } else {
+                console.error('Expected an array but got:', response.data);
+            }
         }
         setIsModalOpen(false);
         setSelectedUser(null);

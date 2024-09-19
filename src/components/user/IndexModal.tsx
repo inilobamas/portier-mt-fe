@@ -106,7 +106,7 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, onSubmit, compan
                             value={role_id !== null ? role_id : 0}
                             onChange={
                                 (e) => {
-                                    setCompanyID(Number(e.target.value))
+                                    setRoleID(Number(e.target.value))
                                 }
                             }
                             className="w-full p-2 border border-gray-300 rounded"
