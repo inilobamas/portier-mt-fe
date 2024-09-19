@@ -105,26 +105,26 @@ const Rooms = () => {
     const handleSubmitRoom = async (roomData: { id?: number; name: string; number: string; floor_id?: number; }) => {
         if (selectedRoom) {
             // Update company
-            await apiClient.put(`/floors/${selectedRoom.ID}`, roomData, {
+            await apiClient.put(`/rooms/${selectedRoom.ID}`, roomData, {
                 headers: { Authorization: `Bearer ${token}` },
             });
         } else {
             // Create new company
-            await apiClient.post('/floors', roomData, {
+            await apiClient.post('/rooms', roomData, {
                 headers: { Authorization: `Bearer ${token}` },
             });
         }
         setIsModalOpen(false);
         setSelectedRoom(null);
-        fetchFloors(); // Refresh the list
+        fetchRooms(); // Refresh the list
     };
 
     // Handle delete
     const handleDeleteFloor = async (id: number) => {
-        await apiClient.delete(`/floors/${id}`, {
+        await apiClient.delete(`/rooms/${id}`, {
             headers: { Authorization: `Bearer ${token}` },
         });
-        fetchFloors();
+        fetchRooms();
     };
 
     return (
@@ -132,12 +132,12 @@ const Rooms = () => {
             <Sidebar />
             <div className="ml-16 flex-1 p-8">
                 <div className="flex justify-between items-center mb-4">
-                    <h1 className="text-2xl">Manage Floors</h1>
+                    <h1 className="text-2xl">Manage Rooms</h1>
                     <button
                         onClick={() => setIsModalOpen(true)}
                         className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
                     >
-                        Create New Floor
+                        Create New Room
                     </button>
                 </div>
 
