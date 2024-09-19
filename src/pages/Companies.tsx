@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import apiClient from '../api/axios';
-import Table from '../components/Table';
+import apiClient from '../api/apiClient';
+import Table from '../components/table/Index';
 import { useAuth } from '../context/AuthContext';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/sideBar/Index';
 import { AxiosError } from 'axios';
-import CompanyModal from '../components/CompanyModal';
+import CompanyModal from '../components/company/IndexModal';
 
 interface Company {
     ID: number;
@@ -73,7 +73,7 @@ const Companies = () => {
     return (
         <div className="flex">
             <Sidebar />
-            <div className="flex-1 p-8">
+            <div className="ml-16 flex-1 p-8">
                 <div className="flex justify-between items-center mb-4">
                     <h1 className="text-2xl">Manage Companies</h1>
                     <button
