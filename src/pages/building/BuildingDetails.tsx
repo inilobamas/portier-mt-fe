@@ -223,7 +223,7 @@ const BuildingDetails = () => {
                 </div>
 
                 {/* Lock Table List (only show if a room is selected) */}
-                {selectedRoom && (
+                {locks.length > 0 ? (
                     <table className="min-w-full text-left text-sm font-light">
                         <thead className="border-b bg-gray-200">
                             <tr>
@@ -237,10 +237,32 @@ const BuildingDetails = () => {
                                 <tr key={lock.ID} className="border-b">
                                     <td className="p-3">{lock.name}</td>
                                     <td className="p-3">{lock.brand}</td>
+                                    <td className="p-3">
+                                        <button
+                                            onClick={() => {
+                                                // setSelectedEmployee(employee);
+                                                // setIsModalOpen(true);
+                                            }}
+                                            className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-2 rounded mr-2"
+                                        >
+                                            Assign Key-Copies
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                // setSelectedEmployee(employee);
+                                                // setIsModalOpen(true);
+                                            }}
+                                            className="bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-2 rounded mr-2"
+                                        >
+                                            Revoke Key-Copies
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
+                ) : (
+                    <p>No locks available.</p>
                 )}
 
 

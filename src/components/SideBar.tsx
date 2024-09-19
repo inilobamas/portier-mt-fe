@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaBook, FaBuilding, FaMale, FaPersonBooth, FaServer, FaSignOutAlt } from 'react-icons/fa';
+import { FaBook, FaBuilding, FaFolder, FaHome, FaKey, FaMale, FaPersonBooth, FaServer, FaSignOutAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 interface SideBarIconProps {
@@ -17,9 +17,9 @@ const Sidebar = () => {
             <SideBarIcon icon={<FaBook size="20" />} text="Manage Companies" to="/companies" />
             <SideBarIcon icon={<FaPersonBooth size="20" />} text="Manage Employees" to="/employees" />
             <SideBarIcon icon={<FaBuilding size="20" />} text="Manage Building" to="/buildings" />
-            {/* <SideBarIcon icon={<FaFolder size="20" />} text="Manage Floors" to="/floors" />
+            <SideBarIcon icon={<FaFolder size="20" />} text="Manage Floors" to="/floors" />
             <SideBarIcon icon={<FaHome size="20" />} text="Manage Rooms" to="/rooms" />
-            <SideBarIcon icon={<FaKey size="20" />} text="Manage Locks" to="/locks" /> */}
+            <SideBarIcon icon={<FaKey size="20" />} text="Manage Locks" to="/locks" />
             <Divider />
             <SideBarIcon icon={<FaSignOutAlt size="22" />} text="Logout" to="/login" />
         </div>
