@@ -4,6 +4,9 @@ import apiClient from '../api/apiClient';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    // Clear token from localStorage
+    localStorage.removeItem('token');
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');

@@ -96,9 +96,12 @@ const Users = () => {
 
     const handleSubmitUser = async (userData: { id?: number; username: string; password: string; company_id?: number, role_id?: number; }) => {
         if (selectedUser) {
-            await apiClient.put(`/users/${selectedUser.ID}`, userData, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            const response = await updateUser(selectedUser.ID, userData, token ?? '');
+            if (response.data && Array.isArray(response.data.data)) {
+                console.log('Success Update User', response.data);
+            } else {
+                console.error('Expected an array but got:', response.data);
+            }
         } else {
             const response = await createUser(userData, token ?? '');
             if (response.data && Array.isArray(response.data.data)) {
