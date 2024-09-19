@@ -45,5 +45,36 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
+## Scope
+
+This frontend project, built with React, TypeScript, and TailwindCSS, covers the following key areas:
+
+User Management:
+Create, Read, Update, and Delete (CRUD) operations for managing users.
+Role-based access control, allowing assignment of roles (e.g., Admin, Super Admin, Normal User).
+
+Company Management:
+CRUD operations for creating, updating, deleting, and viewing companies.
+Each company is associated with users and employees, allowing company-level data isolation.
+
+Employee Management:
+Full CRUD capabilities for managing employees, including linking them to companies.
+Employees can be assigned keys, which are critical to the overall locking system.
+
+Building Management:
+Detailed management of buildings and their hierarchical components:
+Floors: Each building can have multiple floors.
+Rooms: Each floor can contain multiple rooms.
+Locks: Each room can have one or more locks assigned to it.
+The user interface allows for easy navigation between buildings, floors, rooms, and locks.
+
+Super Admin Controls:
+Separate menu for Super Admin users.
+Manual CRUD management of floors, rooms, and locks.
+
+UI and Styling:
+Styled using TailwindCSS for a responsive, clean, and consistent user interface.
+Utilizes React components with TypeScript for type safety, ensuring scalable and maintainable code.
+
 ## Documentation
 [Google Doc](https://docs.google.com/document/d/1rAjp8_1tGBXu5GtAUaINRZjk3fW9dT8OMmbqYR7hRFI/edit?usp=sharing)
