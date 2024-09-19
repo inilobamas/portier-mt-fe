@@ -1,6 +1,6 @@
 import React from 'react';
 import { BsPlus, BsFillLightningFill, BsGearFill } from 'react-icons/bs';
-import { FaBook, FaBuilding, FaFolder, FaKey, FaMale, FaPersonBooth, FaPoo, FaSignOutAlt } from 'react-icons/fa';
+import { FaBook, FaBuilding, FaFolder, FaHome, FaKey, FaMale, FaPersonBooth, FaPoo, FaSignOutAlt, FaSubscript } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 interface SideBarIconProps {
@@ -19,6 +19,7 @@ const Sidebar = () => {
             <SideBarIcon icon={<FaPersonBooth size="20" />} text="Manage Employees" to="/employees" />
             <SideBarIcon icon={<FaBuilding size="20" />} text="Manage Building" to="/buildings" />
             <SideBarIcon icon={<FaFolder size="20" />} text="Manage Floors" to="/floors" />
+            <SideBarIcon icon={<FaHome size="20" />} text="Manage Rooms" to="/rooms" />
             <Divider />
             <SideBarIcon icon={<FaSignOutAlt size="22" />} text="Logout" to="/login" />
         </div>
