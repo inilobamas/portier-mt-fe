@@ -7,6 +7,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Landing from './pages/Landing';
 import Employees from './pages/Employees';
 import Buildings from './pages/Buildings';
+import Floors from './pages/Floors';
 // Import other CRUD pages like Companies, Employees when you add them
 
 function App() {
@@ -45,6 +46,14 @@ function App() {
           element={
             <PrivateRoute>
               <Buildings />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/floors"
+          element={
+            <PrivateRoute>
+              <Floors />
             </PrivateRoute>
           }
         />
