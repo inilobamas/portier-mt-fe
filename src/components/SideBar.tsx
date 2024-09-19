@@ -1,6 +1,5 @@
-import React from 'react';
-import { BsPlus, BsFillLightningFill, BsGearFill } from 'react-icons/bs';
-import { FaBook, FaBuilding, FaFolder, FaHome, FaKey, FaMale, FaPersonBooth, FaPoo, FaServer, FaSignOutAlt, FaSubscript } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaBook, FaBuilding, FaMale, FaPersonBooth, FaServer, FaSignOutAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 interface SideBarIconProps {
