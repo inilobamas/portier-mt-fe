@@ -1,6 +1,6 @@
 import React from 'react';
 import { BsPlus, BsFillLightningFill, BsGearFill } from 'react-icons/bs';
-import { FaBook, FaBuilding, FaFolder, FaHome, FaKey, FaMale, FaPersonBooth, FaPoo, FaSignOutAlt, FaSubscript } from 'react-icons/fa';
+import { FaBook, FaBuilding, FaFolder, FaHome, FaKey, FaMale, FaPersonBooth, FaPoo, FaServer, FaSignOutAlt, FaSubscript } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 interface SideBarIconProps {
@@ -12,14 +12,15 @@ interface SideBarIconProps {
 const Sidebar = () => {
     return (
         <div className="fixed top-0 left-0 h-screen w-16 flex flex-col bg-blue dark:bg-gray-900 shadow-lg">
-            <SideBarIcon icon={<FaKey size="28" />} text="Key Lock Management" to="/" />
+            <SideBarIcon icon={<FaServer size="28" />} text="Key Lock Management" to="/" />
             <Divider />
             <SideBarIcon icon={<FaMale size="32" />} text="Manage Users" to="/users" />
             <SideBarIcon icon={<FaBook size="20" />} text="Manage Companies" to="/companies" />
             <SideBarIcon icon={<FaPersonBooth size="20" />} text="Manage Employees" to="/employees" />
             <SideBarIcon icon={<FaBuilding size="20" />} text="Manage Building" to="/buildings" />
-            <SideBarIcon icon={<FaFolder size="20" />} text="Manage Floors" to="/floors" />
+            {/* <SideBarIcon icon={<FaFolder size="20" />} text="Manage Floors" to="/floors" />
             <SideBarIcon icon={<FaHome size="20" />} text="Manage Rooms" to="/rooms" />
+            <SideBarIcon icon={<FaKey size="20" />} text="Manage Locks" to="/locks" /> */}
             <Divider />
             <SideBarIcon icon={<FaSignOutAlt size="22" />} text="Logout" to="/login" />
         </div>

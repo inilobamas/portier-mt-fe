@@ -6,9 +6,11 @@ import Companies from './pages/Companies';
 import PrivateRoute from './components/PrivateRoute';
 import Landing from './pages/Landing';
 import Employees from './pages/Employees';
-import Buildings from './pages/Buildings';
+import Buildings from './pages/building/Buildings';
 import Floors from './pages/Floors';
 import Rooms from './pages/Rooms';
+import Locks from './pages/Locks';
+import BuildingDetails from './pages/building/BuildingDetails';
 // Import other CRUD pages like Companies, Employees when you add them
 
 function App() {
@@ -66,6 +68,15 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route
+          path="/locks"
+          element={
+            <PrivateRoute>
+              <Locks />
+            </PrivateRoute>
+          }
+        />
+        <Route path="/buildings/:buildingId/details" element={<BuildingDetails />} />
         {/* Add other routes here */}
       </Routes>
     </Router>

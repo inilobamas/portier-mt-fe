@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import apiClient from '../api/apiClient';
 import Table from '../components/table/Index';
 import { useAuth } from '../context/AuthContext';
-import Sidebar from '../components/sideBar/Index';
+import Sidebar from '../components/SideBar';
 import { AxiosError } from 'axios';
 import RoomModal from '../components/room/IndexModal';
 
