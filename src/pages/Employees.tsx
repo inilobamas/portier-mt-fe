@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import apiClient from '../api/axios';
-import Table from '../components/Table';
+import apiClient from '../api/apiClient';
+import Table from '../components/table/Index';
 import { useAuth } from '../context/AuthContext';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/sideBar/Index';
 import { AxiosError } from 'axios';
-import EmployeeModal from '../components/EmployeeModal';
+import EmployeeModal from '../components/employee/IndexModal';
 
 interface Company {
     ID: number;
@@ -103,7 +103,7 @@ const Employees = () => {
     return (
         <div className="flex">
             <Sidebar />
-            <div className="flex-1 p-8">
+            <div className="ml-16 flex-1 p-8">
                 <div className="flex justify-between items-center mb-4">
                     <h1 className="text-2xl">Manage Employees</h1>
                     <button
@@ -169,7 +169,7 @@ const Employees = () => {
                     companies={companies} // Pass the companies list to the modal
                     initialData={
                         selectedEmployee
-                            ? { id: selectedEmployee.ID, name: selectedEmployee.name, email: selectedEmployee.email, phone: selectedEmployee.phone, companyID: selectedEmployee.company_id }
+                            ? { id: selectedEmployee.ID, name: selectedEmployee.name, email: selectedEmployee.email, phone: selectedEmployee.phone, company_id: selectedEmployee.company_id }
                             : undefined
                     }
                 />
