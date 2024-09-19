@@ -31,13 +31,20 @@ interface Room {
     floor_id: number;
 }
 
+interface Lock {
+    ID: number;
+    name: string;
+    brand: string;
+    room_id: number;
+}
+
 const BuildingDetails = () => {
     const { buildingId } = useParams<{ buildingId: string }>();
-    // const { floorId } = useParams<{ floorId: string }>();
     const [floorsBuilding, setFloorsBuilding] = useState<Floor[]>([]);
     const [buildingName, setBuildingName] = useState('');
     const [floors, setFloors] = useState<Floor[]>([]);
     const [rooms, setRooms] = useState<Room[]>([]);
+    const [locks, setLocks] = useState<Lock[]>([]);
     const [selectedFloor, setSelectedFloor] = useState<number | null>(null);
     const [selectedRoom, setSelectedRoom] = useState<number | null>(null);
     const { token, logout } = useAuth();
@@ -108,11 +115,35 @@ const BuildingDetails = () => {
         }
     };
 
+    const fetchLocksInRoom = async (room_id: number) => {
+        try {
+            const response = await apiClient.get(`/locks/room/${room_id}`, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            setLocks(response.data.data);
+            console.log("response.data.data", response.data.data)
+        } catch (error) {
+            // Check if error is an AxiosError
+            if (error instanceof AxiosError) {
+                console.error('Error fetching Locks', error);
+                if (error.response?.status === 401) {
+                    logout(); // Log out and clear the token
+                    navigate('/login'); // Redirect to login page
+                }
+            } else {
+                console.error('An unexpected error occurred', error);
+            }
+        }
+    };
+
     useEffect(() => {
         fetchFloorsInBuilding();
         fetchBuilding();
         if (selectedFloor) {
             fetchRoomsInFloor(selectedFloor);
+        }
+        if (selectedRoom) {
+            fetchLocksInRoom(selectedRoom);
         }
     }, [token, navigate, logout]);
 
@@ -143,7 +174,6 @@ const BuildingDetails = () => {
                             value={selectedFloor || ''}
                             onChange={(e) => {
                                 const floorId = Number(e.target.value);
-                                console.log("floorId", floorId)
                                 setSelectedFloor(floorId); // Set the selected floor
                                 fetchRoomsInFloor(floorId);
                             }}
@@ -167,7 +197,12 @@ const BuildingDetails = () => {
                             <select
                                 id="room"
                                 value={selectedRoom || ''}
-                                onChange={(e) => setSelectedRoom(Number(e.target.value))}
+                                onChange={(e) => {
+                                    const roomId = Number(e.target.value);
+                                    console.log("roomId", roomId)
+                                    setSelectedRoom(roomId); // Set the selected Room
+                                    fetchLocksInRoom(roomId);
+                                }}
                                 className="block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                             >
                                 <option value="">-- Select a Room --</option>
@@ -183,32 +218,31 @@ const BuildingDetails = () => {
                     )}
                 </div>
 
-                <div className='p-3'>
-                    <p>Selected Floor: {selectedFloor}</p>
-                    <p>Selected Room: {selectedRoom}</p>
+                <div className="flex justify-between items-center mb-4">
+                    <h1 className="text-2xl">Manage Locks</h1>
                 </div>
 
-                {/* {floors.length > 0 ? ( */}
-                <table className="min-w-full text-left text-sm font-light">
-                    <thead className="border-b bg-gray-200">
-                        <tr>
-                            <th className="p-3 text-gray-700">Floor Name</th>
-                            <th className="p-3 text-gray-700">Floor Number</th>
-                            <th className="p-3 text-gray-700">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {floorsBuilding.map((floor) => (
-                            <tr key={floor.ID} className="border-b">
-                                <td className="p-3">{floor.name}</td>
-                                <td className="p-3">{floor.number}</td>
+                {/* Lock Table List (only show if a room is selected) */}
+                {selectedRoom && (
+                    <table className="min-w-full text-left text-sm font-light">
+                        <thead className="border-b bg-gray-200">
+                            <tr>
+                                <th className="p-3 text-gray-700">Lock Name</th>
+                                <th className="p-3 text-gray-700">Lock Brand</th>
+                                <th className="p-3 text-gray-700">Actions</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-                {/* ) : (
-                    <p>No Data available.</p>
-                )} */}
+                        </thead>
+                        <tbody>
+                            {locks.map((lock) => (
+                                <tr key={lock.ID} className="border-b">
+                                    <td className="p-3">{lock.name}</td>
+                                    <td className="p-3">{lock.brand}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
+
 
             </div>
         </div >
